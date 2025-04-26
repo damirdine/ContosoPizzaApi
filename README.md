@@ -38,4 +38,4 @@ Apprendre à :
 
 1. Cloner le dépôt :
    ```bash
-   git clone https://github.com/votre-utilisateur/ContosoPizzaApi.git
+   git clone https://github.com/damirdine/ContosoPizzaApi.git
