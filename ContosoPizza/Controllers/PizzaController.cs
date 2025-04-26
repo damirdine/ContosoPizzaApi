@@ -21,5 +21,39 @@ namespace ContosoPizza.Controllers
 
             return pizza;
         }
+
+        [HttpPost()]
+        public IActionResult Create(Pizza pizza)
+        {
+            PizzaService.Add(pizza);
+            return CreatedAtAction(nameof(Get), new { id = pizza.Id }, pizza);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(Pizza pizza, int id)
+        {
+            if (id != pizza.Id)
+                return BadRequest();
+
+            var existingPizza = PizzaService.Get(pizza.Id);
+            if (existingPizza == null)
+                return NotFound();
+
+            PizzaService.Edit(existingPizza);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var pizza = PizzaService.Get(id);
+
+            if (pizza is null)
+                return NotFound();
+
+            PizzaService.Delete(id);
+
+            return NoContent();
+        }
     }
 }
